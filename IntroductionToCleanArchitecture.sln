@@ -3,23 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Core.Domain", "src\Core\TodoList.Core.Domain\TodoList.Core.Domain.csproj", "{54B2D749-9BAC-4B74-AAA1-230F40EA3140}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Domain", "src\Core\TodoList.Domain\TodoList.Domain.csproj", "{54B2D749-9BAC-4B74-AAA1-230F40EA3140}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4D962951-8E52-4AC2-B3EB-40B2386B669F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{46E92617-30EC-4744-A73F-D8628E2EB0DF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AFCD5A72-B3BA-41DA-B73C-4BDF239D67A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Application", "src\Core\TodoList.Application\TodoList.Application.csproj", "{DEBA324D-93DC-486D-AD2E-43C051CE1351}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Core.Application", "src\Core\TodoList.Core.Application\TodoList.Core.Application.csproj", "{DEBA324D-93DC-486D-AD2E-43C051CE1351}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Infrastructure", "src\Infrastructure\TodoList.Core.Infrastructure\TodoList.Infrastructure.csproj", "{EB0A249D-25FC-4FF0-81C9-13F008623A6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Infrastructure", "src\Infrastructure\TodoList.Infrastructure\TodoList.Infrastructure.csproj", "{EB0A249D-25FC-4FF0-81C9-13F008623A6C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{5E991169-CFBB-45A1-B493-019A6AA12856}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{412C1A9F-5F9F-41DE-80DA-60A69A35DBE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList.Api", "TodoList.Api\TodoList.Api.csproj", "{88F12ECD-0F5A-4F8F-8B53-00992B17EA43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList.Api", "src\Presentation\TodoList.Api\TodoList.Api.csproj", "{88F12ECD-0F5A-4F8F-8B53-00992B17EA43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
