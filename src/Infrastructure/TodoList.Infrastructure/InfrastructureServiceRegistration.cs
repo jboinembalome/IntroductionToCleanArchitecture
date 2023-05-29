@@ -6,7 +6,7 @@ using TodoList.Infrastructure.Persistence.Repositories;
 
 namespace TodoList.Infrastructure;
 
-public static class ConfigureServices
+public static class InfrastructureServiceRegistration
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
     {

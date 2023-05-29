@@ -2,21 +2,20 @@
 using System.Reflection;
 using TodoList.Domain.Entities;
 
-namespace TodoList.Infrastructure.Persistence
+namespace TodoList.Infrastructure.Persistence;
+
+internal class TodoListDbContext : DbContext
 {
-    public class TodoListDbContext : DbContext
+    public TodoListDbContext(DbContextOptions options) : base(options)
     {
-        public TodoListDbContext(DbContextOptions options) : base(options)
-        {
-        }
+    }
 
-        public DbSet<TodoItem> TodoItems { get; set; }
+    public DbSet<TodoItem> TodoItems { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            base.OnModelCreating(builder);
-        }
+        base.OnModelCreating(builder);
     }
 }

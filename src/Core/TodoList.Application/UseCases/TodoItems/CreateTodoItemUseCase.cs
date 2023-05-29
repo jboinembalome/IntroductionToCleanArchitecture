@@ -9,7 +9,7 @@ public interface ICreateTodoItemUseCase
     Task<TodoItemDto> Execute(CreateTodoItemDto createTodoItemDto, CancellationToken cancellationToken = default);
 }
 
-public class CreateTodoItemUseCase : ICreateTodoItemUseCase
+internal class CreateTodoItemUseCase : ICreateTodoItemUseCase
 {
     private readonly ITodoItemRepository _todoItemRepository;
 

@@ -8,7 +8,7 @@ public interface IGetTodoItemByIdUseCase
     Task<TodoItemDto?> Execute(int id, CancellationToken cancellationToken = default);
 }
 
-public class GetTodoItemByIdUseCase : IGetTodoItemByIdUseCase
+internal class GetTodoItemByIdUseCase : IGetTodoItemByIdUseCase
 {
     private readonly ITodoItemRepository _todoItemRepository;
 

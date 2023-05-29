@@ -2,17 +2,16 @@
 using Microsoft.EntityFrameworkCore;
 using TodoList.Domain.Entities;
 
-namespace TodoList.Infrastructure.Persistence.Configurations
-{
-    public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
-    {
-        public void Configure(EntityTypeBuilder<TodoItem> builder)
-        {
-            builder.Property(b => b.Id)
-               .IsRequired();
+namespace TodoList.Infrastructure.Persistence.Configurations;
 
-            builder.Property(b => b.Title)
-               .IsRequired();
-        }
+public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
+{
+    public void Configure(EntityTypeBuilder<TodoItem> builder)
+    {
+        builder.Property(b => b.Id)
+           .IsRequired();
+
+        builder.Property(b => b.Title)
+           .IsRequired();
     }
 }
