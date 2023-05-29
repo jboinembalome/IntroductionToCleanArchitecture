@@ -1,11 +1,11 @@
-﻿using TodoList.Application.Dtos.TodoItems;
-using TodoList.Application.Interfaces.Persistence.Repositories;
+﻿using TodoList.Application.Interfaces.Persistence.Repositories;
+using TodoList.Domain.Entities;
 
 namespace TodoList.Application.UseCases.TodoItems;
 
 public interface IGetTodoItemByIdUseCase
 {
-    Task<TodoItemDto?> Execute(int id, CancellationToken cancellationToken = default);
+    Task<TodoItem?> Execute(int id, CancellationToken cancellationToken = default);
 }
 
 internal class GetTodoItemByIdUseCase : IGetTodoItemByIdUseCase
@@ -17,21 +17,9 @@ internal class GetTodoItemByIdUseCase : IGetTodoItemByIdUseCase
         _todoItemRepository = todoItemRepository;
     }
 
-    public async Task<TodoItemDto?> Execute(int id, CancellationToken cancellationToken = default)
+    public async Task<TodoItem?> Execute(int id, CancellationToken cancellationToken = default)
     {
         var todoItem = await _todoItemRepository.GetByIdAsync(id, cancellationToken);
-
-        if (todoItem == null) return null;
-
-        var dto = new TodoItemDto
-        {
-            Id = todoItem.Id,
-            Title = todoItem.Title,
-            Description = todoItem.Description,
-            DueDate = todoItem.DueDate,
-            IsCompleted = todoItem.IsCompleted,
-        };
-
-        return dto;
+        return todoItem;
     }
 }

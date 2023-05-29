@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using TodoList.Application.Dtos.TodoItems;
+using TodoList.Api.Dtos.TodoItems;
 using TodoList.Application.UseCases.TodoItems;
+using TodoList.Domain.Entities;
 
 namespace TodoList.Api.Controllers;
 
@@ -16,10 +17,22 @@ public class TodoItemController : ApiControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<TodoItemDto>> Get(int id, CancellationToken cancellationToken)
+    public async Task<ActionResult<TodoItemDto?>> Get(int id, CancellationToken cancellationToken)
     {
-        var dto = await _getTodoItemByIdUseCase.Execute(id, cancellationToken);
-        if (dto is null) return NotFound();
+        if (id <= 0) return BadRequest();
+
+        var todoItem = await _getTodoItemByIdUseCase.Execute(id, cancellationToken);
+
+        if (todoItem is null) return NotFound();
+
+        var dto = new TodoItemDto
+        {
+            Id = todoItem.Id,
+            Title = todoItem.Title,
+            Description = todoItem.Description,
+            DueDate = todoItem.DueDate,
+            IsCompleted = todoItem.IsCompleted,
+        };
 
         return Ok(dto);
     }
@@ -27,7 +40,25 @@ public class TodoItemController : ApiControllerBase
     [HttpPost]
     public async Task<ActionResult<TodoItemDto>> Create(CreateTodoItemDto createTodoItemDto, CancellationToken cancellationToken)
     {
-        var dto = await _createTodoItemUseCase.Execute(createTodoItemDto, cancellationToken);
+        var todoItem = new TodoItem
+        {
+            Title = createTodoItemDto.Title,
+            Description = createTodoItemDto.Description,
+            DueDate = createTodoItemDto.DueDate,
+            IsCompleted = false
+        };
+
+        _ = await _createTodoItemUseCase.Execute(todoItem, cancellationToken);
+
+        var dto = new TodoItemDto
+        {
+            Id = todoItem.Id,
+            IsCompleted = todoItem.IsCompleted,
+            Title = createTodoItemDto.Title,
+            Description = createTodoItemDto.Description,
+            DueDate = createTodoItemDto.DueDate
+        };
+
         return CreatedAtAction(nameof(Get), new { id = dto.Id }, dto);
     }
 }
