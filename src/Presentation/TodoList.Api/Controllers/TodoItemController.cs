@@ -31,6 +31,8 @@ public class TodoItemController : ApiControllerBase
     [HttpPost]
     public async Task<ActionResult<TodoItemDto>> Create(CreateTodoItemDto createTodoItemDto, CancellationToken cancellationToken)
     {
+        if (string.IsNullOrWhiteSpace(createTodoItemDto?.Title)) return BadRequest();
+
         var todoItem = createTodoItemDto.ToTodoItem();
         _ = await _createTodoItemUseCase.Execute(todoItem, cancellationToken);
 
