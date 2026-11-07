@@ -1,20 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using TodoList.Domain.Entities;
 
 namespace TodoList.Infrastructure.Persistence;
 
-internal class TodoListDbContext : DbContext
+internal sealed class TodoListDbContext(DbContextOptions<TodoListDbContext> options) : DbContext(options)
 {
-    public TodoListDbContext(DbContextOptions options) : base(options)
-    {
-    }
-
-    public DbSet<TodoItem> TodoItems { get; set; }
+    public DbSet<TodoItem> TodoItems => Set<TodoItem>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        builder.ApplyConfigurationsFromAssembly(typeof(TodoListDbContext).Assembly);
 
         base.OnModelCreating(builder);
     }

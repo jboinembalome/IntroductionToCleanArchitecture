@@ -1,8 +1,4 @@
-﻿namespace TodoList.Api.Dtos.TodoItems;
+namespace TodoList.Api.Dtos.TodoItems;
 
-public record CreateTodoItemDto
-{
-    public required string Title { get; init; }
-    public string? Description { get; init; }
-    public DateTime? DueDate { get; init; }
-}
+// What a client may send: no Id, no IsCompleted, so they cannot be over-posted.
+public sealed record CreateTodoItemDto(string Title, string? Description, DateTime? DueDate);

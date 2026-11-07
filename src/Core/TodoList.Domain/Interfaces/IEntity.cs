@@ -1,4 +1,4 @@
-﻿namespace TodoList.Domain.Interfaces;
+namespace TodoList.Domain.Interfaces;
 
 public interface IEntity<TId>
 {

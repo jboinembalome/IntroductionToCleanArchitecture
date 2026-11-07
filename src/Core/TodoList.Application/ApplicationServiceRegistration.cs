@@ -1,8 +1,7 @@
-﻿
 using Microsoft.Extensions.DependencyInjection;
 using TodoList.Application.UseCases.TodoItems;
 
-namespace TodoList.Infrastructure;
+namespace TodoList.Application;
 
 public static class ApplicationServiceRegistration
 {
@@ -14,4 +13,3 @@ public static class ApplicationServiceRegistration
         return services;
     }
 }
-

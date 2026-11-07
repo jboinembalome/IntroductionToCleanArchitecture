@@ -1,8 +1,3 @@
-﻿namespace TodoList.Api.Dtos.TodoItems;
+namespace TodoList.Api.Dtos.TodoItems;
 
-public record TodoItemDto: CreateTodoItemDto
-{
-    public int Id { get; init; }
-    public bool IsCompleted { get; init; }
-
-}
+public sealed record TodoItemDto(int Id, string Title, string? Description, DateTime? DueDate, bool IsCompleted);

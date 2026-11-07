@@ -1,4 +1,4 @@
-﻿using TodoList.Domain.Interfaces;
+using TodoList.Domain.Interfaces;
 
 namespace TodoList.Domain.Entities;
 

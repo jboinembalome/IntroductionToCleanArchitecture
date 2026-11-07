@@ -1,27 +1,17 @@
-﻿using TodoList.Application.Interfaces.Persistence.Repositories;
+using TodoList.Application.Interfaces.Persistence.Repositories;
 using TodoList.Domain.Entities;
 
 namespace TodoList.Infrastructure.Persistence.Repositories;
 
-internal class TodoItemRepository : ITodoItemRepository
+internal sealed class TodoItemRepository(TodoListDbContext dbContext) : ITodoItemRepository
 {
-    private readonly TodoListDbContext _dbContext;
-
-    public TodoItemRepository(TodoListDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
-    public async Task<TodoItem?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
-    {
-        var keyValues = new object[] { id };
-        return await _dbContext.TodoItems.FindAsync(keyValues, cancellationToken);
-    }
+    public async Task<TodoItem?> GetByIdAsync(int id, CancellationToken cancellationToken = default) =>
+        await dbContext.TodoItems.FindAsync([id], cancellationToken);
 
     public async Task<TodoItem> AddAsync(TodoItem todoItem, CancellationToken cancellationToken = default)
     {
-        await _dbContext.TodoItems.AddAsync(todoItem, cancellationToken);
-        await _dbContext.SaveChangesAsync(cancellationToken);
+        await dbContext.TodoItems.AddAsync(todoItem, cancellationToken);
+        await dbContext.SaveChangesAsync(cancellationToken);
 
         return todoItem;
     }
