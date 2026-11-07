@@ -5,11 +5,14 @@ using TodoList.Application.UseCases.TodoItems;
 
 namespace TodoList.Api.Controllers;
 
-public class TodoItemController(
+public sealed class TodoItemController(
     ICreateTodoItemUseCase createTodoItemUseCase,
     IGetTodoItemByIdUseCase getTodoItemByIdUseCase) : ApiControllerBase
 {
     [HttpGet("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<TodoItemDto>> Get(int id, CancellationToken cancellationToken)
     {
         if (id <= 0) return BadRequest();
@@ -21,6 +24,8 @@ public class TodoItemController(
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<TodoItemDto>> Create(CreateTodoItemDto createTodoItemDto, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(createTodoItemDto.Title)) return BadRequest();
