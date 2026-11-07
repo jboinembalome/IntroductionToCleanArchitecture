@@ -1,35 +1,19 @@
-﻿using TodoList.Api.Dtos.TodoItems;
+using TodoList.Api.Dtos.TodoItems;
 using TodoList.Domain.Entities;
 
-namespace TodoList.Api.Mappers.TodoItems
+namespace TodoList.Api.Mappers.TodoItems;
+
+public static class TodoItemMapper
 {
-    public static class TodoItemMapper
-    {
-        public static TodoItemDto ToTodoItemDto(this TodoItem todoItem)
+    public static TodoItemDto ToTodoItemDto(this TodoItem todoItem) =>
+        new(todoItem.Id, todoItem.Title, todoItem.Description, todoItem.DueDate, todoItem.IsCompleted);
+
+    public static TodoItem ToTodoItem(this CreateTodoItemDto createTodoItemDto) =>
+        new()
         {
-            var todoItemDto = new TodoItemDto
-            {
-                Id = todoItem.Id,
-                Title = todoItem.Title,
-                Description = todoItem.Description,
-                DueDate = todoItem.DueDate,
-                IsCompleted = todoItem.IsCompleted,
-            };
-
-            return todoItemDto;
-        }
-
-        public static TodoItem ToTodoItem(this CreateTodoItemDto createTodoItemDto)
-        {
-            var todoItem = new TodoItem
-            {
-                Title = createTodoItemDto.Title,
-                Description = createTodoItemDto.Description,
-                DueDate = createTodoItemDto.DueDate,
-                IsCompleted = false
-            };
-
-            return todoItem;
-        }
-    }
+            Title = createTodoItemDto.Title,
+            Description = createTodoItemDto.Description,
+            DueDate = createTodoItemDto.DueDate,
+            IsCompleted = false
+        };
 }

@@ -1,15 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TodoList.Domain.Entities;
 
 namespace TodoList.Infrastructure.Persistence.Configurations;
 
-public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
+internal sealed class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
 {
     public void Configure(EntityTypeBuilder<TodoItem> builder)
     {
-        builder.Property(b => b.Id)
-           .IsRequired();
+        builder.HasKey(b => b.Id);
 
         builder.Property(b => b.Title)
            .IsRequired();

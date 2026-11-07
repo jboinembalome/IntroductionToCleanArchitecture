@@ -1,4 +1,4 @@
-﻿using TodoList.Domain.Entities;
+using TodoList.Domain.Entities;
 
 namespace TodoList.Application.Interfaces.Persistence.Repositories;
 

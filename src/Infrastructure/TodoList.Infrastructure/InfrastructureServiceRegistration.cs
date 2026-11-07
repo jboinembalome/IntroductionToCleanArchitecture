@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TodoList.Application.Interfaces.Persistence.Repositories;
 using TodoList.Infrastructure.Persistence;
